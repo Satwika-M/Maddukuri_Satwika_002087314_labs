@@ -8,13 +8,13 @@ package Model;
  *
  * @author Satwika
  */
-class HomeAddress {
+public class HomeAddress {
     
     private String CurrentAddress;
-    private int UnitNumber;
+    private String UnitNumber;
     private String street;
     private String city;
-    private int zipCode;
+    private String zipCode;
 
     public String getCurrentAddress() {
         return CurrentAddress;
@@ -24,11 +24,11 @@ class HomeAddress {
         this.CurrentAddress = CurrentAddress;
     }
 
-    public int getUnitNumber() {
+    public String getUnitNumber() {
         return UnitNumber;
     }
 
-    public void setUnitNumber(int UnitNumber) {
+    public void setUnitNumber(String UnitNumber) {
         this.UnitNumber = UnitNumber;
     }
 
@@ -49,11 +49,11 @@ class HomeAddress {
         this.city = city;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
    

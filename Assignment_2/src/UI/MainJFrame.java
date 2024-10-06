@@ -4,17 +4,27 @@
  */
 package UI;
 
+import Model.PersonDirectory;
+import ProfileManager.MngBtnJPanel;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Satwika
  */
 public class MainJFrame extends javax.swing.JFrame {
+    private PersonDirectory personDirectory;
+    
+    
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        this.personDirectory = new PersonDirectory();
+        
     }
 
     /**
@@ -45,6 +55,11 @@ public class MainJFrame extends javax.swing.JFrame {
         btnProfiles.setBackground(new java.awt.Color(204, 204, 204));
         btnProfiles.setText("Profiles");
         btnProfiles.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnProfiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfilesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -85,6 +100,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnProfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilesActionPerformed
+        // TODO add your handling code here:
+        MngBtnJPanel panel = new MngBtnJPanel(WorkPanel, personDirectory);
+        WorkPanel.add("MngBtnJPanel", panel);
+        
+        CardLayout layout = (CardLayout) WorkPanel.getLayout();
+        layout.next(WorkPanel);
+    }//GEN-LAST:event_btnProfilesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,4 +152,5 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
+   
 }

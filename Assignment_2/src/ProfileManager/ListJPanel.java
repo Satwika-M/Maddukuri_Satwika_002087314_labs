@@ -4,17 +4,27 @@
  */
 package ProfileManager;
 
+import Model.PersonDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Satwika
  */
 public class ListJPanel extends javax.swing.JPanel {
-
+    JPanel Area;
+    PersonDirectory personDirectory;
     /**
      * Creates new form ListJPanel
      */
-    public ListJPanel() {
+    public ListJPanel(JPanel container, PersonDirectory directory) {
         initComponents();
+        
+        Area = container;
+        personDirectory = directory;
+        
+        
+        populateTable();
     }
 
     /**
@@ -125,4 +135,8 @@ public class ListJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        
+    }
 }

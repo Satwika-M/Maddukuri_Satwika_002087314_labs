@@ -11,10 +11,10 @@ package Model;
 public class WorkAddress {
     
   private String Address;
-  private int DeptNumber;
+  private String DeptNumber;
   private String street;
   private String city;
-  private int zipCode;
+  private String zipCode;
 
     public String getAddress() {
         return Address;
@@ -24,11 +24,11 @@ public class WorkAddress {
         this.Address = Address;
     }
 
-    public int getDeptNumber() {
+    public String getDeptNumber() {
         return DeptNumber;
     }
 
-    public void setDeptNumber(int DeptNumber) {
+    public void setDeptNumber(String DeptNumber) {
         this.DeptNumber = DeptNumber;
     }
 
@@ -48,11 +48,11 @@ public class WorkAddress {
         this.city = city;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
     

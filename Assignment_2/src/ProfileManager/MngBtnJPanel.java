@@ -4,17 +4,26 @@
  */
 package ProfileManager;
 
+import Model.PersonDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Satwika
  */
 public class MngBtnJPanel extends javax.swing.JPanel {
-
+    
+    JPanel WorkPanel;
+    PersonDirectory personDirectory;
     /**
      * Creates new form MngBtnJPanel
      */
-    public MngBtnJPanel() {
+    public MngBtnJPanel(JPanel container, PersonDirectory directory ) {
         initComponents();
+        
+        WorkPanel = container;
+        personDirectory = directory;
     }
 
     /**
@@ -32,17 +41,27 @@ public class MngBtnJPanel extends javax.swing.JPanel {
         btnList = new javax.swing.JButton();
         btnSearchP = new javax.swing.JButton();
         btnSearchADD = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        Area = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         btnAdd.setBackground(new java.awt.Color(204, 204, 204));
         btnAdd.setText("Add Person");
         btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnList.setBackground(new java.awt.Color(204, 204, 204));
         btnList.setText("List Person");
         btnList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListActionPerformed(evt);
+            }
+        });
 
         btnSearchP.setBackground(new java.awt.Color(204, 204, 204));
         btnSearchP.setText("Search by Person");
@@ -94,9 +113,9 @@ public class MngBtnJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(jPanel3);
+        Area.setBackground(new java.awt.Color(255, 255, 255));
+        Area.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(Area);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,14 +133,34 @@ public class MngBtnJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSearchPActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        AddPersonJPanel panel = new AddPersonJPanel(Area,personDirectory);
+        Area.add("ViewJPanel", panel);
+        
+        CardLayout layout = (CardLayout) Area.getLayout();
+        layout.next(Area);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListActionPerformed
+       
+        // TODO add your handling code here:
+        
+        ListJPanel panel = new ListJPanel(Area,personDirectory);
+        Area.add("ListJPanel", panel);
+        
+        CardLayout layout = (CardLayout) Area.getLayout();
+        layout.next(Area);
+    }//GEN-LAST:event_btnListActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Area;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnList;
     private javax.swing.JButton btnSearchADD;
     private javax.swing.JButton btnSearchP;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

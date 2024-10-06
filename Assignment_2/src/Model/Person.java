@@ -12,8 +12,8 @@ public class Person {
     
     private String firstName;
     private String lastName;
-    private int SocialSecurityNumber;
-    private int Age;
+    private String SocialSecurityNumber;
+    private String Age;
 
     public String getFirstName() {
         return firstName;
@@ -31,19 +31,19 @@ public class Person {
         this.lastName = lastName;
     }
     
-    public int getSocialSecurityNumber() {
+    public String getSocialSecurityNumber() {
         return SocialSecurityNumber;
     }
 
-    public void setSocialSecurityNumber(int SocialSecurityNumber) {
+    public void setSocialSecurityNumber(String SocialSecurityNumber) {
         this.SocialSecurityNumber = SocialSecurityNumber;
     }
 
-    public int getAge() {
+    public String getAge() {
         return Age;
     }
 
-    public void setAge(int Age) {
+    public void setAge(String Age) {
         this.Age = Age;
     }
   
