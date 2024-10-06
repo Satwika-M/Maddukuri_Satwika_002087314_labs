@@ -12,8 +12,8 @@ public class Person {
     
     private String firstName;
     private String lastName;
-    private Address homeAddress;
-    private Address workAddress;
+    private int SocialSecurityNumber;
+    private int Age;
 
     public String getFirstName() {
         return firstName;
@@ -30,20 +30,21 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public Address getHomeAddress() {
-        return homeAddress;
+    
+    public int getSocialSecurityNumber() {
+        return SocialSecurityNumber;
     }
 
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+    public void setSocialSecurityNumber(int SocialSecurityNumber) {
+        this.SocialSecurityNumber = SocialSecurityNumber;
     }
 
-    public Address getWorkAddress() {
-        return workAddress;
+    public int getAge() {
+        return Age;
     }
 
-    public void setWorkAddress(Address workAddress) {
-        this.workAddress = workAddress;
+    public void setAge(int Age) {
+        this.Age = Age;
     }
+  
 }
