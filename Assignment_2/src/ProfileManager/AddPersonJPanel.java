@@ -23,7 +23,7 @@ public class AddPersonJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddPersonJPanel
      */
-    public AddPersonJPanel(JPanel container, PersonDirectory directory, Person person ) {
+    public AddPersonJPanel(JPanel container, PersonDirectory directory) {
         initComponents();
         
         Area = container;

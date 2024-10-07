@@ -4,11 +4,19 @@
  */
 package ProfileManager;
 
+import Model.Person;
+import Model.PersonDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Satwika
  */
 public class ViewJPanel extends javax.swing.JPanel {
+    private JPanel Area;
+    private PersonDirectory personDirectory;
+    private Person person;
+    
 
     /**
      * Creates new form ListJPanel

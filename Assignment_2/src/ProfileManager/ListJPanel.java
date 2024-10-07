@@ -164,8 +164,8 @@ public class ListJPanel extends javax.swing.JPanel {
             Person foundAccount = personDirectory.searchperson(FirstName);
             
             if(foundAccount != null){
-                AddPersonJPanel panel = new AddPersonJPanel(Area, personDirectory, foundAccount);
-                Area.add("ViewAccountJPanel",panel);
+                AddPersonJPanel panel = new AddPersonJPanel(Area, personDirectory);
+                Area.add("ViewJPanel",panel);
                 CardLayout layout = (CardLayout) Area.getLayout();
                 layout.next(Area);
             }else {
