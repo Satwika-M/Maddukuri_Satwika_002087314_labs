@@ -82,8 +82,18 @@ public class ListJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("Search by Address");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("View details");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +153,7 @@ public class ListJPanel extends javax.swing.JPanel {
       
         if (selectedRow >= 0){
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected account?", "Warning", dialogButton);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected person details?", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION){
                 Person selectedPerson = (Person) tblDetails.getValueAt(selectedRow, 0);
                 personDirectory.deletePerson(selectedPerson);
@@ -151,7 +161,7 @@ public class ListJPanel extends javax.swing.JPanel {
             
             }
             }else{
-                JOptionPane.showMessageDialog(null, "Please select an account from the list.", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select an person from the list.", "Warning", JOptionPane.WARNING_MESSAGE);
                 
         }
      
@@ -161,21 +171,57 @@ public class ListJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(!txtSearchName.getText().isBlank()){
             String FirstName = txtSearchName.getText();
-            Person foundAccount = personDirectory.searchperson(FirstName);
+            Person foundPerson = personDirectory.searchperson(FirstName);
             
-            if(foundAccount != null){
-                AddPersonJPanel panel = new AddPersonJPanel(Area, personDirectory);
+            if(foundPerson != null){
+                ViewJPanel panel = new ViewJPanel(Area, personDirectory, foundPerson);
                 Area.add("ViewJPanel",panel);
                 CardLayout layout = (CardLayout) Area.getLayout();
                 layout.next(Area);
             }else {
-                JOptionPane.showMessageDialog(null, "Account not found. Please check the account number and try again", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Person not found. Please check the firstname and try again", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Please type the account number to view", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please type the person firstname to view", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_BtnSearchNameActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(!txtSearchAddress.getText().isBlank()){
+            String CurrentAddress = txtSearchName.getText();
+            Person foundAddress = personDirectory.searchaddress(CurrentAddress);
+            
+            if(foundAddress != null){
+                ViewJPanel panel = new ViewJPanel(Area, personDirectory, foundAddress);
+                Area.add("ViewJPanel",panel);
+                CardLayout layout = (CardLayout) Area.getLayout();
+                layout.next(Area);
+            }else {
+                JOptionPane.showMessageDialog(null, "Person not found. Please check the Address and try again", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please type the person Address to view", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblDetails.getSelectedRow();
+        
+        if (selectedRow >= 0){
+            Person selectedPerson = (Person) tblDetails.getValueAt(selectedRow, 0);
+            
+            ViewJPanel panel = new ViewJPanel(Area, personDirectory, selectedPerson);
+            Area.add("ViewAccountJPanel", panel);
+            CardLayout layout = (CardLayout) Area.getLayout();
+            layout.next(Area);
+        } else{
+            JOptionPane.showMessageDialog(null,"Please select a person from the list to view.", "Warning", JOptionPane.WARNING_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     
 
@@ -198,7 +244,7 @@ public class ListJPanel extends javax.swing.JPanel {
         for (Person p : personDirectory.getPerson()){
         
                Object[] row = new Object[4];
-               row[0] = p.getFirstName();
+               row[0] = p;
                row[1] = p.getLastName();
                row[2] = p.getCurrentAddress();
                row[3] = p.getAddress();

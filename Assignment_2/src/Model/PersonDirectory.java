@@ -42,10 +42,19 @@ public class PersonDirectory {
     
   
     
-    public Person searchperson(String accountNumber){
-        for(Person a : persons){
-            if(a.getAccountNumber().contains(accountNumber)){
-                return a;
+    public Person searchperson(String firstName){
+        for(Person p : persons){
+            if(p.getFirstName().contains(firstName)){
+                return p;
+            }
+        } 
+        return null;
+    }
+    
+    public Person searchaddress(String currentAddress){
+        for(Person p : persons){
+            if(p.getFirstName().contains(currentAddress)){
+                return p;
             }
         } 
         return null;

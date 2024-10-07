@@ -6,6 +6,7 @@ package ProfileManager;
 
 import Model.Person;
 import Model.PersonDirectory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,8 +22,14 @@ public class ViewJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListJPanel
      */
-    public ViewJPanel() {
+    public ViewJPanel(JPanel Area, PersonDirectory directory, Person person) {
         initComponents();
+        
+        this.Area = Area;
+        this.person = person;
+        
+        refreshTextFields();
+        setViewMode();
     }
 
     /**
@@ -75,6 +82,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblLastName = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        btnSave = new javax.swing.JButton();
+        brnUpdate = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -248,44 +257,59 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        brnUpdate.setText("Update");
+        brnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSeparator1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(152, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFirstName)
+                                    .addComponent(lblLastName))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblAGE)
+                                        .addComponent(lblSSN))
+                                    .addGap(1, 1, 1)))
+                            .addGap(56, 56, 56)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblFirstName)
-                                .addComponent(lblLastName))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblAGE)
-                                    .addComponent(lblSSN))
-                                .addGap(1, 1, 1)))
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtAGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(btnSave)
+                .addGap(60, 60, 60)
+                .addComponent(brnUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -324,7 +348,11 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(brnUpdate))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAGE, txtFirstName, txtLastName, txtSSN});
@@ -337,16 +365,71 @@ public class ViewJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText(); 
+        String socialsecurityNumber = txtSSN.getText();
+        String age = txtAGE.getText();
+        String HomeCurrentAddress = txtCurrentAddress.getText();
+        String unitNumber = txtUnitNumber.getText();
+        String HomeStreet = txtStreetAddress.getText();
+        String HomeCity = txtCity.getText();
+        String HomeState = txtState.getText();
+        String Homezipcode  = txtZipCode.getText();
+        String WorkAddress = txtAddress3.getText();
+        String DeptNumber = txtDeptNumber3.getText();
+        String WorkStreet = txtStreetAddress4.getText();
+        String WorkCity = txtCity4.getText();
+        String WorkState = txtState4.getText();
+        String Workzipcode= txtZipCode4.getText();
+        
+        if (firstName.isBlank() || lastName.isBlank() || socialsecurityNumber.isBlank() || age.isBlank() || HomeCurrentAddress.isBlank() || unitNumber.isBlank() || HomeStreet.isBlank() || HomeCity.isBlank() || Homezipcode.isBlank() || WorkAddress.isBlank() || DeptNumber.isBlank() || WorkStreet.isBlank() || WorkCity.isBlank() || Workzipcode.isBlank())
+        {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return;
+        }
+        
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
+        person.setSocialSecurityNumber(socialsecurityNumber);
+        person.setAge(age);
+        person.setCurrentAddress(HomeCurrentAddress);
+        person.setUnitNumber(unitNumber);
+        person.setStreet(HomeStreet);
+        person.setCity(HomeCity);
+        person.setState(HomeState);
+        person.setZipCode(Homezipcode);
+        person.setAddress(WorkAddress);
+        person.setDeptNumber(DeptNumber);
+        person.setWorkstreet(WorkStreet);
+        person.setWorkcity(WorkCity);
+        person.setWorkState(WorkState);
+        person.setZipCode(Workzipcode);
+        
+        
+        JOptionPane.showMessageDialog(null,"Account successfully updated", "Successful", JOptionPane.INFORMATION_MESSAGE);
+        
+        setViewMode();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void brnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnUpdateActionPerformed
+        // TODO add your handling code here:
+        setEditMode();
+    }//GEN-LAST:event_brnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton brnUpdate;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -389,4 +472,70 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtZipCode;
     private javax.swing.JTextField txtZipCode4;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTextFields() {
+        txtFirstName.setText(person.getFirstName());
+        txtLastName.setText(person.getLastName()); 
+        txtSSN.setText(person.getSocialSecurityNumber());
+        txtAGE.setText(person.getAge());
+        txtCurrentAddress.setText(person.getCurrentAddress());
+        txtUnitNumber.setText(person.getUnitNumber());
+        txtStreetAddress.setText(person.getStreet());
+        txtCity.setText(person.getCity());
+        txtState.setText(person.getState());
+        txtZipCode.setText(person.getZipCode());
+        txtAddress3.setText(person.getAddress());
+        txtDeptNumber3.setText(person.getDeptNumber());
+        txtStreetAddress4.setText(person.getWorkstreet());
+        txtCity4.setText(person.getWorkcity());
+        txtState4.setText(person.getWorkState());
+        txtZipCode4.setText(person.getWorkzipCode());
+        
+    }
+
+    private void setViewMode() {
+    
+        txtFirstName.setEnabled(false);
+        txtLastName.setEnabled(false); 
+        txtSSN.setEnabled(false);
+        txtAGE.setEnabled(false);
+        txtCurrentAddress.setEnabled(false);
+        txtUnitNumber.setEnabled(false);
+        txtStreetAddress.setEnabled(false);
+        txtCity.setEnabled(false);
+        txtState.setEnabled(false);
+        txtZipCode.setEnabled(false);
+        txtAddress3.setEnabled(false);
+        txtDeptNumber3.setEnabled(false);
+        txtStreetAddress4.setEnabled(false);
+        txtCity4.setEnabled(false);
+        txtState4.setEnabled(false);
+        txtZipCode4.setEnabled(false);
+        
+        btnSave.setEnabled(false);
+        brnUpdate.setEnabled(true);
+    
+    }
+
+    private void setEditMode() {
+        txtFirstName.setEnabled(true);
+        txtLastName.setEnabled(true); 
+        txtSSN.setEnabled(true);
+        txtAGE.setEnabled(true);
+        txtCurrentAddress.setEnabled(true);
+        txtUnitNumber.setEnabled(true);
+        txtStreetAddress.setEnabled(true);
+        txtCity.setEnabled(true);
+        txtState.setEnabled(true);
+        txtZipCode.setEnabled(true);
+        txtAddress3.setEnabled(true);
+        txtDeptNumber3.setEnabled(true);
+        txtStreetAddress4.setEnabled(true);
+        txtCity4.setEnabled(true);
+        txtState4.setEnabled(true);
+        txtZipCode4.setEnabled(true);
+    
+        btnSave.setEnabled(true);
+        brnUpdate.setEnabled(false);
+    }
 }

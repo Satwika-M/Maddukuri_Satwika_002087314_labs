@@ -41,8 +41,6 @@ public class MngBtnJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnList = new javax.swing.JButton();
-        btnSearchP = new javax.swing.JButton();
-        btnSearchADD = new javax.swing.JButton();
         Area = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -65,19 +63,6 @@ public class MngBtnJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearchP.setBackground(new java.awt.Color(204, 204, 204));
-        btnSearchP.setText("Search by Person");
-        btnSearchP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSearchP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchPActionPerformed(evt);
-            }
-        });
-
-        btnSearchADD.setBackground(new java.awt.Color(204, 204, 204));
-        btnSearchADD.setText("Search by Address");
-        btnSearchADD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,16 +71,11 @@ public class MngBtnJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnList)
-                    .addComponent(btnSearchP)
-                    .addComponent(btnSearchADD))
+                    .addComponent(btnAdd))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdd)
-                .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd, btnList, btnSearchADD, btnSearchP});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd, btnList});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,14 +84,10 @@ public class MngBtnJPanel extends javax.swing.JPanel {
                 .addComponent(btnAdd)
                 .addGap(18, 18, 18)
                 .addComponent(btnList)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearchP)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearchADD)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd, btnList, btnSearchADD, btnSearchP});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd, btnList});
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -123,17 +99,13 @@ public class MngBtnJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSearchPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchPActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -160,8 +132,6 @@ public class MngBtnJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel Area;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnList;
-    private javax.swing.JButton btnSearchADD;
-    private javax.swing.JButton btnSearchP;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables

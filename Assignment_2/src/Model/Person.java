@@ -18,11 +18,13 @@ public class Person {
     private String UnitNumber;
     private String street;
     private String city;
+    private String State;
     private String zipCode;
     private String Address;
     private String DeptNumber;
     private String workstreet;
     private String workcity;
+    private String WorkState;
     private String workzipCode;
 
     public String getCurrentAddress() {
@@ -136,5 +138,25 @@ public class Person {
     public void setAge(String Age) {
         this.Age = Age;
     }
-  
+    
+     public String getState() {
+        return State;
+    }
+
+    public void setState(String State) {
+        this.State = State;
+    }
+
+    public String getWorkState() {
+        return WorkState;
+    }
+
+    public void setWorkState(String WorkState) {
+        this.WorkState = WorkState;
+    }
+    
+    @Override
+    public String toString(){
+        return firstName;
+    }
 }

@@ -5,9 +5,9 @@
 package ProfileManager;
 
 import Model.Person;
-import Model.HomeAddress;
+//import Model.HomeAddress;
 import Model.PersonDirectory;
-import Model.WorkAddress;
+//import Model.WorkAddress;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,6 +28,8 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         
         Area = container;
         personDirectory = directory;
+        
+      
     }
 
     /**
@@ -81,7 +83,6 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         txtState1 = new javax.swing.JTextField();
         lblAddress = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
@@ -259,8 +260,6 @@ public class AddPersonJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setText("Update");
-
         btnback.setText("Back");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,9 +273,7 @@ public class AddPersonJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -357,9 +354,7 @@ public class AddPersonJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnCreate)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -388,14 +383,16 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         String unitNumber = txtUnitNumber.getText();
         String HomeStreet = txtStreetAddress.getText();
         String HomeCity = txtCity.getText();
+        String HomeState = txtState.getText();
         String Homezipcode = txtZipCode.getText();
         String WorkAddress = txtAddress.getText();
         String DeptNumber = txtDeptNumber.getText();
         String WorkStreet = txtStreetAddress1.getText();
         String WorkCity = txtCity1.getText();
+        String WorkState = txtState1.getText();
         String Workzipcode = txtZipCode1.getText();
         
-        if (firstName.isBlank() || lastName.isBlank() || socialsecurityNumber.isBlank() || age.isBlank() || HomeCurrentAddress.isBlank() || unitNumber.isBlank() || HomeStreet.isBlank() || HomeCity.isBlank() || Homezipcode.isBlank() || WorkAddress.isBlank() || DeptNumber.isBlank() || WorkStreet.isBlank() || WorkCity.isBlank() || Workzipcode.isBlank())
+        if (firstName.isBlank() || lastName.isBlank() || socialsecurityNumber.isBlank() || age.isBlank() || HomeCurrentAddress.isBlank() || unitNumber.isBlank() || HomeStreet.isBlank() || HomeCity.isBlank() || HomeState.isBlank() ||  Homezipcode.isBlank() || WorkAddress.isBlank() || DeptNumber.isBlank() || WorkStreet.isBlank() || WorkCity.isBlank() || WorkState.isBlank() || Workzipcode.isBlank())
         {
             JOptionPane.showMessageDialog(this, "All the fields are mandatory", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -407,22 +404,18 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         p.setLastName(lastName);
         p.setSocialSecurityNumber(socialsecurityNumber);
         p.setAge(age);
-        
-        //HomeAddress h = personDirectory.addHomeAddress();
-        
         p.setCurrentAddress(HomeCurrentAddress);
         p.setUnitNumber(unitNumber);
-        p.setStreet(WorkStreet);
-        p.setCity(WorkCity);
-        p.setZipCode(Workzipcode);
-        
-        //WorkAddress w = personDirectory.addWorkAddress();
-        
+        p.setStreet(HomeStreet);
+        p.setCity(HomeCity);
+        p.setState(HomeState);
+        p.setZipCode(Homezipcode);
         p.setAddress(WorkAddress);
         p.setDeptNumber(DeptNumber);
-        p.setStreet(WorkStreet);
-        p.setCity(WorkCity);
-        p.setZipCode(Workzipcode);
+        p.setWorkstreet(WorkStreet);
+        p.setWorkcity(WorkCity);
+        p.setWorkState(WorkState);
+        p.setWorkzipCode(Workzipcode);
         
         JOptionPane.showMessageDialog(this,"Person Details successfully Created","Information", JOptionPane.INFORMATION_MESSAGE);
         
@@ -434,11 +427,13 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         txtUnitNumber.setText("");
         txtStreetAddress.setText("");
         txtCity.setText("");
+        txtState.setText("");
         txtZipCode.setText("");
         txtAddress.setText("");
         txtDeptNumber.setText("");
         txtStreetAddress1.setText("");
         txtCity1.setText("");
+        txtState1.setText("");
         txtZipCode1.setText("");
         
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -453,7 +448,6 @@ public class AddPersonJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnback;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
