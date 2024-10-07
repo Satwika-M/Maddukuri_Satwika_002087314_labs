@@ -23,7 +23,7 @@ public class AddPersonJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddPersonJPanel
      */
-    public AddPersonJPanel(JPanel container, PersonDirectory directory ) {
+    public AddPersonJPanel(JPanel container, PersonDirectory directory, Person person ) {
         initComponents();
         
         Area = container;
@@ -408,21 +408,21 @@ public class AddPersonJPanel extends javax.swing.JPanel {
         p.setSocialSecurityNumber(socialsecurityNumber);
         p.setAge(age);
         
-        HomeAddress h = personDirectory.addHomeAddress();
+        //HomeAddress h = personDirectory.addHomeAddress();
         
-        h.setCurrentAddress(HomeCurrentAddress);
-        h.setUnitNumber(unitNumber);
-        h.setStreet(WorkStreet);
-        h.setCity(WorkCity);
-        h.setZipCode(Workzipcode);
+        p.setCurrentAddress(HomeCurrentAddress);
+        p.setUnitNumber(unitNumber);
+        p.setStreet(WorkStreet);
+        p.setCity(WorkCity);
+        p.setZipCode(Workzipcode);
         
-        WorkAddress w = personDirectory.addWorkAddress();
+        //WorkAddress w = personDirectory.addWorkAddress();
         
-        w.setAddress(WorkAddress);
-        w.setDeptNumber(DeptNumber);
-        w.setStreet(WorkStreet);
-        w.setCity(WorkCity);
-        w.setZipCode(Workzipcode);
+        p.setAddress(WorkAddress);
+        p.setDeptNumber(DeptNumber);
+        p.setStreet(WorkStreet);
+        p.setCity(WorkCity);
+        p.setZipCode(Workzipcode);
         
         JOptionPane.showMessageDialog(this,"Person Details successfully Created","Information", JOptionPane.INFORMATION_MESSAGE);
         

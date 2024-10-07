@@ -4,8 +4,14 @@
  */
 package ProfileManager;
 
+import Model.HomeAddress;
+import Model.Person;
 import Model.PersonDirectory;
+import Model.WorkAddress;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,8 +28,6 @@ public class ListJPanel extends javax.swing.JPanel {
         
         Area = container;
         personDirectory = directory;
-        
-        
         populateTable();
     }
 
@@ -38,13 +42,13 @@ public class ListJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tblDetails = new javax.swing.JTable();
+        BtnSearchName = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
+        txtSearchName = new javax.swing.JTextField();
+        txtSearchAddress = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 255));
 
@@ -52,7 +56,7 @@ public class ListJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("List of People");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,15 +72,25 @@ public class ListJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDetails);
 
-        jButton1.setText("Search by Name");
+        BtnSearchName.setText("Search by Name");
+        BtnSearchName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSearchNameActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Search by Address");
 
         jButton3.setText("View details");
 
-        jButton4.setText("Delete");
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,16 +103,16 @@ public class ListJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(BtnSearchName)
+                    .addComponent(btnDelete))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                    .addComponent(txtSearchName)
+                    .addComponent(txtSearchAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BtnSearchName, btnDelete, jButton2, jButton3});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,34 +123,87 @@ public class ListJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnSearchName)
+                    .addComponent(txtSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearchAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(btnDelete)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblDetails.getSelectedRow();
+      
+        if (selectedRow >= 0){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected account?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION){
+                Person selectedPerson = (Person) tblDetails.getValueAt(selectedRow, 0);
+                personDirectory.deletePerson(selectedPerson);
+                populateTable();
+            
+            }
+            }else{
+                JOptionPane.showMessageDialog(null, "Please select an account from the list.", "Warning", JOptionPane.WARNING_MESSAGE);
+                
+        }
+     
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void BtnSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchNameActionPerformed
+        // TODO add your handling code here:
+        if(!txtSearchName.getText().isBlank()){
+            String FirstName = txtSearchName.getText();
+            Person foundAccount = personDirectory.searchperson(FirstName);
+            
+            if(foundAccount != null){
+                AddPersonJPanel panel = new AddPersonJPanel(Area, personDirectory, foundAccount);
+                Area.add("ViewAccountJPanel",panel);
+                CardLayout layout = (CardLayout) Area.getLayout();
+                layout.next(Area);
+            }else {
+                JOptionPane.showMessageDialog(null, "Account not found. Please check the account number and try again", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please type the account number to view", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BtnSearchNameActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnSearchName;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblDetails;
+    private javax.swing.JTextField txtSearchAddress;
+    private javax.swing.JTextField txtSearchName;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblDetails.getModel();
+        model.setRowCount(0);
         
+        for (Person p : personDirectory.getPerson()){
+        
+               Object[] row = new Object[4];
+               row[0] = p.getFirstName();
+               row[1] = p.getLastName();
+               row[2] = p.getCurrentAddress();
+               row[3] = p.getAddress();
+               
+               model.addRow(row);
+        }
     }
 }

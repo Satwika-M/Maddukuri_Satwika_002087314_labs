@@ -4,6 +4,7 @@
  */
 package ProfileManager;
 
+import Model.Person;
 import Model.PersonDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -16,10 +17,11 @@ public class MngBtnJPanel extends javax.swing.JPanel {
     
     JPanel WorkPanel;
     PersonDirectory personDirectory;
+    Person person;
     /**
      * Creates new form MngBtnJPanel
      */
-    public MngBtnJPanel(JPanel container, PersonDirectory directory ) {
+    public MngBtnJPanel(JPanel container, PersonDirectory directory, Person person ) {
         initComponents();
         
         WorkPanel = container;
@@ -135,7 +137,7 @@ public class MngBtnJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        AddPersonJPanel panel = new AddPersonJPanel(Area,personDirectory);
+        AddPersonJPanel panel = new AddPersonJPanel(Area,personDirectory, Person person);
         Area.add("ViewJPanel", panel);
         
         CardLayout layout = (CardLayout) Area.getLayout();
