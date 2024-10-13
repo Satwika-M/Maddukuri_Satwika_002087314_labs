@@ -14,6 +14,12 @@ public class Feature {
     private String name;
     private Object value;
     
+    
+
+    public Feature() {
+    }
+
+    
     public Feature(Product owner){
     
         this.owner = owner;
